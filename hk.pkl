@@ -10,7 +10,11 @@ local linters = new Mapping<String, Step> {
     ["newlines"] = Builtins.newlines
     ["check-merge-conflict"] = Builtins.check_merge_conflict
     ["taplo"] = Builtins.taplo
-    ["ryl"] = Builtins.ryl
+    ["ryl"] {
+        glob = List("**/*.yml", "**/*.yaml")
+        check = "ryl check {{files}}"
+        fix = "ryl check --fix {{files}}"
+    }
 }
 
 hooks {
