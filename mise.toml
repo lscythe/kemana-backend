@@ -1,7 +1,13 @@
 [tools]
-hk = "2.9.0"
+rust = { version = "1.99.1", profile = "minimal", components = "rustfmt,clippy" }
+hk = "2.11.1"
 python = "3.15.2"
-"cargo:cargo-llvm-cov" = "latest"
+taplo = "0.10.0"
+"aqua:owenlamont/ryl" = "0.29.0"
+"cargo:cargo-llvm-cov" = "0.9.1"
+
+[hooks]
+postinstall = "hk install --mise"
 
 [tasks.format]
 description = "Format sources with rustfmt"

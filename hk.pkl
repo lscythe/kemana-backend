@@ -1,10 +1,16 @@
-amends "package://github.com/jdx/hk/releases/download/v2.9.0/hk@2.9.0#/Config.pkl"
+amends "package://github.com/jdx/hk/releases/download/v2.11.1/hk@2.11.1#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v2.11.1/hk@2.11.1#/Builtins.pkl"
 
 local linters = new Mapping<String, Step> {
     ["rustfmt"] {
         glob = List("**/*.rs")
         fix = "cargo fmt"
     }
+    ["trailing-whitespace"] = Builtins.trailing_whitespace
+    ["newlines"] = Builtins.newlines
+    ["check-merge-conflict"] = Builtins.check_merge_conflict
+    ["taplo"] = Builtins.taplo
+    ["ryl"] = Builtins.ryl
 }
 
 hooks {

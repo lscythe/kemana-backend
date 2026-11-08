@@ -6,7 +6,13 @@ Thank you for contributing. Keep changes focused, tested and easy to review.
 
 1. Search existing issues and pull requests.
 2. For a new feature or an architectural change, open an issue first so the approach can be agreed.
-3. Run `mise install` and `hk install --mise` so the git hooks run locally.
+3. Run `mise install`. It installs the pinned tools and, through a mise `postinstall` hook, the git hooks (`hk install --mise`).
+
+Git hooks, defined in `hk.pkl`:
+
+- **pre-commit:** rustfmt, whitespace, end-of-file, merge-conflict, TOML and YAML checks on staged files.
+- **commit-msg:** validates the commit header and scope.
+- **pre-push:** `mise run check` and `mise run test`.
 
 ## Branch flow
 
@@ -66,7 +72,7 @@ mise run test
 
 The `pre-push` hook runs both. On every pull request CI runs:
 
-- **rust**: rustfmt, clippy with warnings denied, the commit scope tests, and the Rust tests with coverage uploaded to Codecov
+- **rust**: tools installed from `mise.toml`, then rustfmt, clippy with warnings denied, the commit scope tests, and the Rust tests with coverage uploaded to Codecov
 - **CodeQL** for Rust, and **Dependency review** for new dependencies
 
 The `rust` job must pass before a pull request can merge. A pull request that only changes Markdown files or `docs/` skips it; the skipped job still satisfies the required check.
