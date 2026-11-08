@@ -5,7 +5,7 @@ A Rust service for accounts, community and moderation. It is currently a bare sk
 ## Requirements
 
 - [mise](https://mise.jdx.dev) for the task runner and tools (`mise install`)
-- Rust 1.99.0, installed automatically by `rustup` from `rust-toolchain.toml`
+- Every tool version (Rust, Python, hk, cargo-llvm-cov and the linters) is pinned in `mise.toml`
 
 ## Build and run
 
@@ -22,7 +22,7 @@ mise run test      # commit scope tests, then cargo test
 mise run coverage  # lcov.info (needs cargo-llvm-cov)
 ```
 
-Run `hk install --mise` once to enable the git hooks. See [CONTRIBUTING](.github/CONTRIBUTING.md) for the branch flow and commit rules.
+`mise install` also installs the git hooks (pre-commit, commit-msg and pre-push). See [CONTRIBUTING](.github/CONTRIBUTING.md) for the branch flow and commit rules.
 
 ## License
 
